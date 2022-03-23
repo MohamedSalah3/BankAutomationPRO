@@ -34,15 +34,16 @@ String get_ERROR() {
 }
 
 public  void set_ERROR(boolean b) {
-	// TODO Auto-generated method stub
+
 this.ERROR_STATUSb = b;
 }	
 
 public  boolean set_ERROR1(String b) {
 boolean ret  = false;	
-this.ERROR_STATUS = b;// TODO Auto-generated method stub
+this.ERROR_STATUS = b;
 if(this.ERROR_STATUS != null) {
 	ret = true;
+	
 }else {
 	ret = false;
 }

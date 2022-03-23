@@ -1,10 +1,11 @@
 package aui;
 import java.io.IOException;
+/*
 import java.util.*; 
 import javax.mail.*; 
 import javax.mail.internet.*; 
-//import javax.activation.*; 
-
+import javax.activation.*; 
+*/
 public class Emails {
 	int ERROR_STATUS ; 
 	String TO_Field ;
@@ -15,6 +16,8 @@ public class Emails {
 	String CC;
 	final int Port = 25;
 	final long SMTP_Server = 200;
+
+	
 //	Queue Mail_waitingList;
 	Emails(){/*
 		String to = "w4led86@gmail.com"; 
@@ -54,6 +57,7 @@ public class Emails {
 		} 
 		
 	*/	
+
 	}
 	
 	/*
@@ -77,13 +81,12 @@ public class Emails {
 	
 		return this.ERROR_STATUS;
 	}
-	
 
-	
-	int set_attachment_path() throws IOException{
-	Call_Script get_path = new Call_Script();
-	this.Attachment_path =	get_path.Send_commands_String("powershell.exe -Command \"&{Write-Host \" This is attachment path \" }\"");
+	int set_attachment_path(String Path) throws IOException{
+	//Call_Script get_path = new Call_Script();
+	//this.Attachment_path =	get_path.Send_commands_String("powershell.exe -Command \"&{Write-Host \" This is attachment path \" }\"");
 	//this.Attachment_path = "This is attachment path";
+	this.Attachment_path=Path;
 	
 	return this.ERROR_STATUS;
 	}

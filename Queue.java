@@ -59,6 +59,7 @@ if (this.Is_Empty())
 {System.out.println("Queue is Empty");
 this.front = 0;
 this.rare = -1;
+
 }else {
 	Statement=this.processes[this.front];
 	this.front++;

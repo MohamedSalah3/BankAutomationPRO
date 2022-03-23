@@ -1,5 +1,7 @@
 package aui;
 
+import java.io.IOException;
+
 public class Queue_of_Requests {
 
 
@@ -32,7 +34,7 @@ static final char Queue_max_size = 10;
 	boolean Is_Empty() {
 		return (this.size == 0);
 	}
-int inQueue(Request RequestID) {
+int inQueue(Request x) throws CloneNotSupportedException {
 this.ERROR_STATUS = 0;/*No problem */
 if(this.Is_Full())
 {
@@ -40,9 +42,11 @@ System.out.println("Queue is full");
 this.rare = -1;
 }else {
 	this.rare++;
-	 this.processes[this.rare]= RequestID;
-		this.size++;
-	 System.out.println(this.processes[this.rare].get_Req_number());
+this.processes[this.rare]=(Request)x.clone();
+
+	this.size++;
+	
+	// System.out.println(this.processes[this.rare].get_Req_number());
 }
 
 
@@ -57,27 +61,43 @@ this.front = 0;
 this.rare = -1;
 }else {
 
- RequestID=this.processes[this.front];
+ RequestID.Copy(this.processes[this.front]);
 	this.front++;
 	this.size--;
 }
 	return RequestID;
 }
 
-void debug(){
+Request dequeue_all(Queue_of_Requests ReQ) throws IOException {
+	  
+	Work_With_files file = new Work_With_files();
+	   final String CC = "Digital BackOffice";
+	   final String From ="Mohamed\'s Bot";
+	
+	   Request Temp = new Request(ReQ.dequeue());
+	  Temp.set_Request_email(From,CC);
+	  file.Write_email_file(Temp, file.path_generator(Temp));
+	  System.out.println(Temp.get_Req_number());	  
+	  return Temp;
+}
+
+
+
+void debug()
+{
 	   System.out.println("Error = "+this.ERROR_STATUS);
 	   System.out.println("size  = "+this.size);
 	   System.out.println("front = "+this.front);
 	   System.out.println("rare  = "+this.rare);
-	  String print = this.processes[this.front].get_branch()+" " + this.processes[this.front].get_MajorReqType()+" "+
+	  String print = 
+	   this.processes[this.front].get_branch()+" " +
+	   this.processes[this.front].get_MajorReqType()+" "+
 	   this.processes[this.front].get_MinorReqType()+" "+
 	   this.processes[this.front].get_Req_number()+" "+
 	   this.processes[this.front].get_Request_status()+" "+
 	   this.processes[this.front].get_rim_number()+" "+
 	   this.processes[this.front].get_TO_Date();
 System.out.println(print);	   
-
-
 }
 
 	
